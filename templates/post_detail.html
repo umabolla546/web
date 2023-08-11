@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: red;
+            color: white;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+        .post {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        #date {
+            color: #777;
+        }
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+        }
+        .btn {
+            margin-right: 10px;
+        }
+        .btn.warning {
+            background-color: #f0ad4e;
+        }
+        .btn.danger {
+            background-color: #d9534f;
+        }
+         #date {
+           color: yellow;
+            font-size: 12px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ post.title }}</h1>
+        <div class="post">
+            <p id="date">published on {{ post.timestamp }} by {{ post.author|title }}</p>
+            {{ post.content | linebreaks }}
+        </div>
+        <button class="btn warning"><a href="{% url 'post_list' %}">Back to List</a></button>
+        <button class="btn danger"><a href="{% url 'post_delete' post.pk %}">Delete</a></button>
+        <button class="btn warning"><a href="{% url 'post_edit' post.pk %}">Edit</a></button>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
