@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    background: red;
+    color: white;
+}
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+h1{
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+.post, .confirmation-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+#date {
+    color: yellow;
+    font-size: 12px;
+    font-style: italic;
+}
+button[type="submit"], button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+
+   /*button[type="submit"] {*/
+   /*         background-color: #333;*/
+   /*         color: white;*/
+   /*         padding: 10px 20px;*/
+   /*         border: none;*/
+   /*         border-radius: 4px;*/
+   /*         cursor: pointer;*/
+   /*     }*/
+
+
+
+
+a {
+    color: #333;
+    text-decoration: none;
+    margin-left: 10px;
+}
+.btn {
+    margin-right: 10px;
+}
+.btn.warning {
+    background-color: #f0ad4e;
+}
+.btn.danger {
+    background-color: #d9534f;
+}

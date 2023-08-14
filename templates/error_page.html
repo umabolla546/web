@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .error-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #e74c3c;
+        }
+        p {
+            color: #333;
+            margin: 10px 0;
+        }
+        .support-link {
+            color: #3498db;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>An Error Occurred</h1>
+        <p>{{ error_message }}</p>
+        <p>Please try again later or <a class="support-link" href="#">contact support</a>.</p>
+    </div>
+</body>
+</html>

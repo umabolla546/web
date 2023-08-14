@@ -18,6 +18,7 @@ from django.urls import path,include
 from Boogging_app import views
 from django.conf import settings
 from django.conf.urls.static import static
+# from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +27,7 @@ urlpatterns = [
     path('post/new/', views.create_post, name='post_create'),
     path('post/<int:pk>/edit/', views.update_post, name='post_edit'),
     path('post/<int:pk>/delete/', views.delete_post, name='post_delete'),
+
 
     path('api/', include('Boogging_app.API.urls')),
 

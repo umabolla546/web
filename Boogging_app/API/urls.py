@@ -1,8 +1,8 @@
 from django.urls import path
-from Boogging_app.API.views import BloagListCreateAPIView
+from Boogging_app.API.views import BlogListCreateAPIView
 
 urlpatterns = [
-    path('', BloagListCreateAPIView.as_view()),
+    path('', BlogListCreateAPIView.as_view()),
 
 
 ]

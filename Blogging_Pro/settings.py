@@ -25,7 +25,7 @@ SECRET_KEY = 'r*ds=u73rb+z8o@%n$gug&piy!-tw#-_jrx$0u_w8)goo_6zrh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -70,6 +70,18 @@ CACHES = {
 }
 
 CACHE_TTL = 60 * 15  # Cache TTL for 15 minutes
+
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.UserRateThrottle',
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'user': '1000/day',  # Adjust as needed
+    },
+
+}
+
+
 
 
 
@@ -145,3 +157,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+

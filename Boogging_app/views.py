@@ -1,67 +1,93 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import BlogPost
-from .forms import BlogPostForm
 
 from django.views.decorators.cache import cache_page
 from django.conf import settings
-from django.core.cache import cache
-
-
-
+import logging
+logger = logging.getLogger(__name__)
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import BlogPostForm
+from .models import BlogPost
 
 
 def create_post(request):
     if request.method == 'POST':
         form = BlogPostForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('post_list')
+            try:
+                form.save()
+                logger.info("New blog post created: %s", form.cleaned_data['title'])
+                return redirect('post_list')
+            except Exception as e:
+                logger.error("Error creating new blog post: %s", str(e))
+        else:
+            logger.warning("Invalid form data submitted")
     else:
         form = BlogPostForm()
+
     return render(request, 'post_form.html', {'form': form})
-
-
 
 def update_post(request, pk):
     post = get_object_or_404(BlogPost, pk=pk)
+
     if request.method == 'POST':
         form = BlogPostForm(request.POST, instance=post)
         if form.is_valid():
-            form.save()
-            return redirect('post_list')
+            try:
+                form.save()
+                logger.info("Blog post updated: %s", post.title)
+                return redirect('post_list')
+            except Exception as e:
+                logger.error("Error updating blog post: %s", str(e))
+        else:
+            logger.warning("Invalid form data submitted for post update")
     else:
         form = BlogPostForm(instance=post)
+
     return render(request, 'post_form.html', {'form': form})
 
-
-
-
-@cache_page(settings.CACHE_TTL)
-def post_list(request):
-    # Check if the data is in cache
-    cached_data = cache.get('blog_list_data')
-    if cached_data is not None:
-        return cached_data
-
-    # If not in cache, retrieve and cache the data
-    posts = BlogPost.objects.all()
-    response= render(request, 'post_list.html', {'posts': posts})
-    cache.set('blog_list_data', response, settings.CACHE_TTL)
-    return response
-
-
-
 def post_detail(request, pk):
-    post = get_object_or_404(BlogPost, pk=pk)
-    return render(request, 'post_detail.html', {'post': post})
+    try:
+        post = get_object_or_404(BlogPost, pk=pk)
 
+        # Log the access to the post detail view
+        logger.info("Accessed post detail view for post with ID %s", pk)
 
-
-
+        return render(request, 'post_detail.html', {'post': post})
+    except Exception as e:
+        logger.error("Error accessing post detail view: %s", str(e))
 
 def delete_post(request, pk):
     post = get_object_or_404(BlogPost, pk=pk)
+
     if request.method == 'POST':
-        post.delete()
-        return redirect('post_list')
+        try:
+            # Log the deletion of the post
+            logger.info("Deleted post with ID %s: %s", pk, post.title)
+
+            post.delete()
+            return redirect('post_list')
+        except Exception as e:
+            logger.error("Error deleting blog post: %s", str(e))
     return render(request, 'post_confirm_delete.html', {'post': post})
+
+
+
+
+# @cache_page(settings.CACHE_TTL)
+# # def post_list(request):
+# #     posts = BlogPost.objects.all()
+# #     return render(request, 'post_list.html', {'posts': posts})
+
+@cache_page(settings.CACHE_TTL)
+def post_list(request):
+    try:
+        # Fetch the list of blog posts from the database
+        posts = BlogPost.objects.all()
+        # Render the template with the list of posts
+        return render(request, 'post_list.html', {'posts': posts})
+
+    except Exception as e:
+        # Log the exception
+        logger.error(f"An error occurred: {str(e)}")
+
+        # For example, you can render an error page or return an error response.
+        return render(request, 'error_page.html', {'error_message': 'An error occurred. Please try again later.'})

@@ -1,78 +1,18 @@
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <title>Title</title>#}
-{#</head>#}
-{#<body>#}
-{##}
-{#  <h2>Delete Blog Post</h2>#}
-{#  <p>Are you sure you want to delete the following blog post?</p>#}
-{#  <p><strong>Title:</strong> {{ post.title }}</p>#}
-{#  <p><strong>Author:</strong> {{ post.author }}</p>#}
-{#  <p><strong>Content:</strong> {{ post.content }}</p>#}
-{#  <form method="post">#}
-{#    {% csrf_token %}#}
-{#    <button type="submit">Confirm Delete</button>#}
-{#    <a href="{% url 'post_list' %}">Cancel</a>#}
-{#  </form>#}
-{##}
-{#</body>#}
-{#</html>#}
-{##}
-
-
-
 
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Blog Post</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: red;
-            color: white;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h2 {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-        }
-        .confirmation-box {
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 4px;
-            margin-top: 20px;
-        }
-        strong {
-            font-weight: bold;
-        }
-        button[type="submit"] {
-            background-color: #d9534f;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        a {
-            color: #333;
-            text-decoration: none;
-            margin-left: 10px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+
+
 </head>
 <body>
     <div class="container">
-        <h2>Delete Blog Post : {{ post.title }}</h2>
+        <h1>Delete Blog Post : {{ post.title }}</h1>
         <div class="confirmation-box">
             <p>Are you sure you want to delete the following blog post?</p>
             <p><strong>Title:</strong> {{ post.title }}</p>
@@ -80,8 +20,9 @@
             <p><strong>Content:</strong> {{ post.content }}</p>
             <form method="post">
                 {% csrf_token %}
-                <button type="submit">Confirm Delete</button>
-                <a href="{% url 'post_list' %}">Cancel</a>
+                <button class="btn danger" type="submit">Confirm Delete</button>
+                <button class="btn warning"><a href="{% url 'post_list' %}">Cancel</a></button>
+
             </form>
         </div>
     </div>
