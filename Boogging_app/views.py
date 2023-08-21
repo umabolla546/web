@@ -1,12 +1,15 @@
-
+from django.core.cache import cache
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.views.decorators.cache import cache_page
 from django.conf import settings
 import logging
-logger = logging.getLogger(__name__)
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import BlogPostForm
 from .models import BlogPost
 
+CACHE_TTL=getattr(settings,'CACHE_TTL',DEFAULT_TIMEOUT)
+
+logger = logging.getLogger('info_logger')
 
 def create_post(request):
     if request.method == 'POST':
@@ -46,9 +49,13 @@ def update_post(request, pk):
 
 def post_detail(request, pk):
     try:
-        post = get_object_or_404(BlogPost, pk=pk)
+        post = cache.get(f'post_{pk}')  # Use a unique key for each post
+        print('data from cache')
 
-        # Log the access to the post detail view
+        if not post:
+            post = get_object_or_404(BlogPost, pk=pk)
+            cache.set(f'post_{pk}', post)
+
         logger.info("Accessed post detail view for post with ID %s", pk)
 
         return render(request, 'post_detail.html', {'post': post})

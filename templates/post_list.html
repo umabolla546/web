@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 {% load static %}
-{% load cache %}  <!-- Load the cache template tag library -->
+{#{% load cache %}  <!-- Load the cache template tag library -->#}
 
 <html lang="en">
 <head>
@@ -20,7 +20,7 @@
     <div class="container">
         <h1>Blog Post List</h1>
 
-    {% cache 300 my_cache_key %}
+{#    {% cache 300 my_cache_key %}#}
 
 
         {% for post in posts %}
@@ -30,7 +30,7 @@
             {{ post.content | truncatewords:30 |linebreaks }}
         </div>
         {% endfor %}
-            {% endcache %}
+{#            {% endcache %}#}
 
 
         <button type="button"><a href="{% url 'post_create' %}">Create New Post</a></button>
