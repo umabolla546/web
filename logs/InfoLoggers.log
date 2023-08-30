@@ -1,16 +1,2 @@
-2023-08-21 11:51:52,996  INFO  20804  C:\web_app\Blogging_Pro\Boogging_app\views.py  post_detail  81  Accessed post detail view for post with ID 4
-2023-08-21 11:56:20,748  INFO  16792  C:\web_app\Blogging_Pro\Boogging_app\views.py  post_detail  81  Accessed post detail view for post with ID 9
-
-2023-08-21 12:15:39,354  INFO  3820  C:\web_app\Blogging_Pro\Boogging_app\views.py  post_detail  84  Accessed post detail view for post with ID 3
-2023-08-21 12:29:35,637  INFO  17552  C:\web_app\Blogging_Pro\Boogging_app\views.py  post_detail  84  Accessed post detail view for post with ID 9
-2023-08-21 12:30:10,767  INFO  17552  C:\web_app\Blogging_Pro\Boogging_app\views.py  post_detail  84  Accessed post detail view for post with ID 3
-
-
-2023-08-21 12:32:25,337  INFO  22856  C:\web_app\Blogging_Pro\Boogging_app\views.py  post_detail  84  Accessed post detail view for post with ID 4
-
-2023-08-21 12:55:00,616  INFO  14548  C:\web_app\Blogging_Pro\Boogging_app\views.py  post_detail  84  Accessed post detail view for post with ID 9
-2023-08-21 12:56:37,341  INFO  5452  C:\web_app\Blogging_Pro\Boogging_app\views.py  post_detail  84  Accessed post detail view for post with ID 3
-2023-08-21 13:24:54,301  INFO  5452  C:\web_app\Blogging_Pro\Boogging_app\views.py  post_detail  84  Accessed post detail view for post with ID 4
-
-
-2023-08-21 13:25:24,915  INFO  5452  C:\web_app\Blogging_Pro\Boogging_app\views.py  update_post  39  Blog post updated: python
+2023-08-25 10:19:26,255  INFO  6708  C:\web_app\Blogging_Pro\Boogging_app\views.py  post_detail  59  Accessed post detail view for post with ID 3
+2023-08-25 10:19:34,539  INFO  6708  C:\web_app\Blogging_Pro\Boogging_app\views.py  update_post  39  Blog post updated: Django

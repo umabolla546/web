@@ -65,7 +65,7 @@ CACHES = {
         }
     }
 }
-CACHE_TTL = 300
+CACHE_TTL = 300 # Cache TTL for 5 minutes
 
 CACHES = {
     'default': {
