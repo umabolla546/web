@@ -11,3 +11,22 @@ public class VowelConsonant {
 
     }
 }
+
+
+
+
+
+
+
+
+# Simple Python program to add two numbers
+
+# Get input from the user
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+# Add the two numbers
+result = num1 + num2
+
+# Print the result
+print("The sum is:", result)
